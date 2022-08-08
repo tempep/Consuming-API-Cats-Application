@@ -9,16 +9,13 @@
 </head>
 <body>
     <h1>The most beautifull cats in the whole world!</h1>
-    
-    <section id="random cats">
-        <figure id="figureBtn">
-            <button onclick="loadRandomCats()" id="btnMoreCats">More cats</button>
-        </figure>
-    </section>
-
-    <section id="favoriteKitties">
-        <button onclick="loadFavoriteCats()">Get favorite cats</button>
-
+    <figure id="figureBtn">
+        <button onclick="loadRandomCats()" id="btnMoreCats">More cats</button>
+    </figure>
+    <section id="random_cats"></section>
+    <section id="favoriteCats">
+        <button onclick="loadFavoriteCats()" id="btnGetFavorites">Get favorite cats</button>
+            <article id="artFavoriteCats"></article>
     </section>
 
     <script src="./main.js"></script>
