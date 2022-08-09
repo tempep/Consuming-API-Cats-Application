@@ -1,6 +1,8 @@
 const api_key='2daf9336-2f35-4df6-8c06-169d7172cf27';
 const api_url_random='https://api.thecatapi.com/v1/images/search?limit=4';
 const api_url_favorites='https://api.thecatapi.com/v1/favourites';
+const api_url_upload='https://api.thecatapi.com/v1/images/upload';
+const api_url_get_images='https://api.thecatapi.com/v1/images';
 
 
 async function loadRandomCats(){
@@ -95,6 +97,42 @@ async function deleteFavoriteCats(id){
     }else{
         console.log("The cat has been deleted");
         loadFavoriteCats();
+    }
+}
+
+async function uploadCatPhoto(){
+    const form=document.getElementById("uploadForm");
+    const formData=new FormData(form);
+
+    const res=await fetch(api_url_upload,{
+        method:"POST",
+        headers:{
+            "x-api-key":api_key
+        },
+        body:formData
+    });
+    const data=await res.json();
+    if(res.status!==201){
+        console.log(res);
+    }else{
+        console.log("The cat photo was created");
+        saveFavoriteCats(data.id);
+    }
+
+}
+
+async function getUploadedPhoto(){
+    const res=await fetch(api_url_get_images,{
+        headers:{
+            "x-api-key":api_key
+        }
+    });
+    const data=await res.json();
+
+    if(res.status!==200){
+        console.log("Uploaded has failed");
+    }else{
+        console.log("Uploaded photo has been saved");
     }
 }
 
